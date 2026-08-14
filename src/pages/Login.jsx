@@ -4,8 +4,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
 const Login = () => {
+<<<<<<< HEAD
   const [email, setEmail] = useState('gk@mail.com');
   const [password, setPassword] = useState('123456');
+=======
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+>>>>>>> e1a5fb2 (APS frontend with backend integration)
   const [error, setError] = useState('');
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -36,7 +41,11 @@ const Login = () => {
                 <Form.Control
                   type="email"
                   required
+<<<<<<< HEAD
                   placeholder="name@company.com"
+=======
+                  placeholder="name@mail.com"
+>>>>>>> e1a5fb2 (APS frontend with backend integration)
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />

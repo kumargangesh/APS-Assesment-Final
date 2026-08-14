@@ -35,6 +35,7 @@ function App() {
   );
 }
 
+<<<<<<< HEAD
 export default App;
 
 // import { useState } from 'react'
@@ -159,3 +160,6 @@ export default App;
 // }
 
 // export default App
+=======
+export default App;
+>>>>>>> e1a5fb2 (APS frontend with backend integration)

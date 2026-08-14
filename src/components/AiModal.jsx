@@ -7,13 +7,9 @@ const AiModal = ({ show, onHide, onAddTasks }) => {
   const [loading, setLoading] = useState(false);
   const [suggestions, setSuggestions] = useState([]);
 
-<<<<<<< HEAD
-  const API_URL = 'https://opulent-space-rotary-phone-4qg9jr6r6r5p37rwx-5000.app.github.dev';
-=======
   // const API_URL = 'https://opulent-space-rotary-phone-4qg9jr6r6r5p37rwx-5000.app.github.dev';
 
   const API_URL = 'https://aps-assesment-final.onrender.com'
->>>>>>> e1a5fb2 (APS frontend with backend integration)
 
   const handleGenerate = async (e) => {
     e.preventDefault();

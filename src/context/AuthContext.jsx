@@ -3,13 +3,9 @@ import axios from 'axios';
 
 export const AuthContext = createContext();
 
-<<<<<<< HEAD
-const API_URL = 'https://opulent-space-rotary-phone-4qg9jr6r6r5p37rwx-5000.app.github.dev';
-=======
 // const API_URL = 'https://opulent-space-rotary-phone-4qg9jr6r6r5p37rwx-5000.app.github.dev';
 
 const API_URL = 'https://aps-assesment-final.onrender.com'
->>>>>>> e1a5fb2 (APS frontend with backend integration)
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);

@@ -6,6 +6,9 @@ import TaskModal from '../components/TaskModal';
 import { ThemeContext } from '../context/ThemeContext';
 
 const Dashboard = () => {
+  
+  const API_URL = 'https://aps-assesment-final.onrender.com'
+
   const [stats, setStats] = useState({ total: 0, completed: 0, pending: 0, highPriority: 0 });
   const [aiBriefing, setAiBriefing] = useState('');
   const [loadingBriefing, setLoadingBriefing] = useState(false);
@@ -13,7 +16,6 @@ const Dashboard = () => {
   const [showTaskModal, setShowTaskModal] = useState(false);
   const { theme } = useContext(ThemeContext);
 
-  const API_URL = 'https://aps-assesment-final.onrender.com';
 
   useEffect(() => {
     fetchStats();

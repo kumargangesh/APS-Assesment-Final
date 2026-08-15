@@ -10,19 +10,20 @@ import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 
 const TasksPage = () => {
+
   const [tasks, setTasks] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState('');
   const [priorityFilter, setPriorityFilter] = useState('');
-  
+
   const [showTaskModal, setShowTaskModal] = useState(false);
   const [showAiModal, setShowAiModal] = useState(false);
   const [taskToEdit, setTaskToEdit] = useState(null);
   const { theme } = useContext(ThemeContext);
 
-  const API_URL = 'https://aps-assesment-final.onrender.com';
+  const API_URL = 'https://aps-assesment-final.onrender.com'
 
   const fetchTasks = useCallback(async () => {
     try {
@@ -31,6 +32,7 @@ const TasksPage = () => {
       });
       setTasks(data.tasks);
       setTotalPages(data.pages);
+      console.log('in TasksPage, tasks : ', tasks);
     } catch (err) {
       console.error(err);
     }
@@ -45,11 +47,10 @@ const TasksPage = () => {
       if (taskToEdit) {
         toast.success("Task updated successfully", { autoClose: 2000 });
         await axios.put(`${API_URL}/api/tasks/${taskToEdit._id}`, formData);
-        
       } else {
+        console.log('in handleSaveTask : task data : ', formData);
         toast.success("Task created successfully", { autoClose: 2000 });
         await axios.post(`${API_URL}/api/tasks`, formData);
-        
       }
       setShowTaskModal(false);
       setTaskToEdit(null);
@@ -88,8 +89,8 @@ const TasksPage = () => {
           <Button variant="outline-primary" onClick={() => setShowAiModal(true)}>
             <i className="bi bi-robot me-1"></i> AI Breakdown
           </Button>
-          <Button 
-            variant={theme === 'dark' ? 'primary' : 'dark'} 
+          <Button
+            variant={theme === 'dark' ? 'primary' : 'dark'}
             onClick={() => { setTaskToEdit(null); setShowTaskModal(true); }}
           >
             <i className="bi bi-plus-lg me-1"></i> Add Task

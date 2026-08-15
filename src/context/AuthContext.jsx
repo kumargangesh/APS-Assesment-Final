@@ -3,13 +3,12 @@ import axios from 'axios';
 
 export const AuthContext = createContext();
 
-// const API_URL = 'https://opulent-space-rotary-phone-4qg9jr6r6r5p37rwx-5000.app.github.dev';
-
 const API_URL = 'https://aps-assesment-final.onrender.com'
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [email, setEmail] = useState(null);
 
   useEffect(() => {
     const userInfo = localStorage.getItem('userInfo');
@@ -24,6 +23,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     console.log('in login : ', email, password);
     const { data } = await axios.post(`${API_URL}/api/auth/login`, { email, password });
+    setEmail(email);
     setUser(data);
     localStorage.setItem('userInfo', JSON.stringify(data));
     axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
@@ -31,6 +31,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (name, email, password) => {
     const { data } = await axios.post(`${API_URL}/api/auth/register`, { name, email, password });
+    setEmail(email);
     setUser(data);
     localStorage.setItem('userInfo', JSON.stringify(data));
     axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
@@ -40,10 +41,11 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('userInfo');
     delete axios.defaults.headers.common['Authorization'];
     setUser(null);
+    setEmail(null);
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout, loading }}>
+    <AuthContext.Provider value={{ user, login, register, logout, loading, email, setEmail }}>
       {children}
     </AuthContext.Provider>
   );

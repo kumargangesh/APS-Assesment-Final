@@ -2,6 +2,8 @@ import React, { useState, useContext } from 'react';
 import { Form, Button, Card, Container, Alert } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -15,9 +17,15 @@ const Register = () => {
     e.preventDefault();
     try {
       await register(name, email, password);
-      navigate('/dashboard');
+      toast.success("User created successfully", { autoClose: 2000 });
+
+      setTimeout(() => {
+        navigate('/dashboard');
+      }, 2000);
+
     } catch (err) {
       setError(err.response?.data?.message || 'Registration failed');
+      toast.error("Login failed", { autoClose: 3000 });
     }
   };
 

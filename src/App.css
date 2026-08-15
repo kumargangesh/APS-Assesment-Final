@@ -1,4 +1,117 @@
-/* Business Oriented Slate Theme */
+/* Enterprise Business Slate Theme */
+:root {
+  --bg-primary: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-input: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  --accent-color: #2563eb;
+  --navbar-bg: #0f172a;
+  --btn-primary-bg: #0f172a;
+  --btn-primary-border: #0f172a;
+  --btn-primary-text: #ffffff;
+}
+
+[data-theme='dark'] {
+  --bg-primary: #0b0f19;
+  --bg-card: #131b2e;
+  --bg-input: #1a233a;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --border-color: #222f49;
+  --accent-color: #38bdf8;
+  --navbar-bg: #070a12;
+  --btn-primary-bg: #2563eb;
+  --btn-primary-border: #2563eb;
+  --btn-primary-text: #ffffff;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  min-height: 100vh;
+}
+
+/* Custom Surface Elements */
+.card {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-main) !important;
+}
+
+.navbar-custom {
+  background-color: var(--navbar-bg) !important;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.text-custom-muted {
+  color: var(--text-muted) !important;
+}
+
+/* Form Controls & Inputs */
+.form-control,
+.form-select,
+.input-group-text {
+  background-color: var(--bg-input) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-main) !important;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--accent-color) !important;
+  box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.15) !important;
+}
+
+.form-control::placeholder {
+  color: var(--text-muted) !important;
+}
+
+/* Priority Badges */
+.badge-low { 
+  background-color: #e2e8f0 !important; 
+  color: #334155 !important; 
+}
+.badge-medium { 
+  background-color: #fef3c7 !important; 
+  color: #92400e !important; 
+}
+.badge-high { 
+  background-color: #fee2e2 !important; 
+  color: #991b1b !important; 
+}
+
+[data-theme='dark'] .badge-low { 
+  background-color: #1e293b !important; 
+  color: #94a3b8 !important; 
+}
+[data-theme='dark'] .badge-medium { 
+  background-color: #451a03 !important; 
+  color: #fcd34d !important; 
+}
+[data-theme='dark'] .badge-high { 
+  background-color: #450a0a !important; 
+  color: #fca5a5 !important; 
+}
+
+/* Category Pill */
+.category-badge {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-muted) !important;
+  border: 1px solid var(--border-color);
+}
+
+
+
+
+
+
+
+
+/* Business Oriented Slate Theme
 :root {
   --bg-primary: #f8fafc;
   --bg-card: #ffffff;
@@ -41,4 +154,4 @@ body {
 
 .badge-low { background-color: #e2e8f0; color: #334155; }
 .badge-medium { background-color: #fef3c7; color: #92400e; }
-.badge-high { background-color: #fee2e2; color: #991b1b; }
+.badge-high { background-color: #fee2e2; color: #991b1b; } */

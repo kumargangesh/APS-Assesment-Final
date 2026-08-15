@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form, Spinner, Card } from 'react-bootstrap';
 import axios from 'axios';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AiModal = ({ show, onHide, onAddTasks }) => {
   const [goal, setGoal] = useState('');
@@ -27,6 +29,7 @@ const AiModal = ({ show, onHide, onAddTasks }) => {
 
   const handleAcceptAll = () => {
     onAddTasks(suggestions);
+    toast.success("Generated tasks added successfully", { autoClose: 2000 });
     setSuggestions([]);
     setGoal('');
     onHide();

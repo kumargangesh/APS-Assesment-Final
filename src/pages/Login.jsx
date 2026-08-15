@@ -2,6 +2,8 @@ import React, { useState, useContext } from 'react';
 import { Form, Button, Card, Container, Alert } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -14,9 +16,16 @@ const Login = () => {
     e.preventDefault();
     try {
       await login(email, password);
-      navigate('/dashboard');
+      toast.success("Login successful", { autoClose: 2000 });
+
+      // Delay navigation by 2 seconds
+      setTimeout(() => {
+        navigate('/dashboard');
+      }, 2000);
+
     } catch (err) {
       setError(err.response?.data?.message || 'Invalid Login Credentials');
+      toast.error("Login failed", { autoClose: 3000 });
     }
   };
 
@@ -27,7 +36,7 @@ const Login = () => {
           <Card.Body>
             <h3 className="fw-bold mb-1">Welcome back</h3>
             <p className="text-custom-muted small mb-4">Sign in to your workspace</p>
-            
+
             {error && <Alert variant="danger">{error}</Alert>}
 
             <Form onSubmit={handleSubmit}>

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const TaskModal = ({ show, onHide, onSave, taskToEdit }) => {
   const [formData, setFormData] = useState({
@@ -32,6 +34,7 @@ const TaskModal = ({ show, onHide, onSave, taskToEdit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    toast.success("Task added successfully", { autoClose: 2000 });
     onSave(formData);
   };
 

@@ -41,7 +41,9 @@ const getTasks = async (req, res) => {
 // @route POST /api/tasks
 const createTask = async (req, res) => {
   try {
-    const { title, description, priority, category, dueDate } = req.body;
+    const { title, description, priority, category, dueDate, emailSent } = req.body;
+
+    console.log('in createTask API, formData : ', emailSent);
 
     if (!title) {
       return res.status(400).json({ message: 'Task title is required' });
@@ -53,7 +55,8 @@ const createTask = async (req, res) => {
       description,
       priority,
       category,
-      dueDate
+      dueDate,
+      emailSent: emailSent ?? false
     });
 
     res.status(201).json(task);

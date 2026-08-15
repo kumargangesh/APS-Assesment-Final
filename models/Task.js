@@ -33,6 +33,10 @@ const taskSchema = new mongoose.Schema(
     },
     dueDate: {
       type: Date
+    },
+    emailSent: {
+      type: Boolean,
+      default: false
     }
   },
   { timestamps: true }

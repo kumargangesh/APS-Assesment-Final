@@ -4,11 +4,53 @@ const Task = require('../models/Task');
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
+const generateTitleSuggestion = async (req, res) => {
+  try {
+    const { description } = req.body;
+
+    console.log('in generateTitleSuggestion, desc: ', description);
+
+    if (!description) {
+      return res.status(400).json({ message: 'Description is required for suggestion' });
+    }
+
+    const response = await groq.chat.completions.create({
+      messages: [
+        {
+          role: 'system',
+
+          content: 'You are an executive productivity assistant. You are given an description, now write a 3-4 words single title related to it. Respond ONLY in valid JSON format'
+        },
+        {
+          role: 'user',
+          content: `Description: ${description}`
+        }
+      ],
+      model: 'llama-3.3-70b-versatile'
+    });
+
+
+    const content = response.choices[0]?.message?.content || '{}';
+
+    // Ensure we only grab the JSON part
+    const cleanJson = content.substring(content.indexOf('{'), content.lastIndexOf('}') + 1);
+
+    // Parse into an object
+    const title = JSON.parse(cleanJson);
+
+    console.log('title from GROQ : ', title);
+
+    res.status(200).json({ "title": title });
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to generate AI suggestions', error: error.message });
+  }
+};
+
 // @route POST /api/ai/suggest
 const generateAiTaskSuggestions = async (req, res) => {
   try {
     const { goal } = req.body;
-    
+
     if (!goal) {
       return res.status(400).json({ message: 'Goal prompt is required' });
     }
@@ -63,4 +105,4 @@ const getAiTaskSummary = async (req, res) => {
   }
 };
 
-module.exports = { generateAiTaskSuggestions, getAiTaskSummary };
+module.exports = { generateAiTaskSuggestions, getAiTaskSummary, generateTitleSuggestion };

@@ -4,6 +4,13 @@ const Task = require('../models/Task');
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
+const OpenAI = require("openai");
+ 
+const groq = new OpenAI({
+  apiKey: process.env.GROQ_API_KEY,
+  baseURL: "https://api.groq.com/openai/v1"
+});
+
 const generateTitleSuggestion = async (req, res) => {
   try {
     const { description } = req.body;
@@ -26,7 +33,7 @@ const generateTitleSuggestion = async (req, res) => {
           content: `Description: ${description}`
         }
       ],
-      model: 'deepseek-r1-distill-llama-70b'
+      model: "openai/gpt-oss-20b"
     });
 
 
@@ -66,7 +73,7 @@ const generateAiTaskSuggestions = async (req, res) => {
           content: `Goal: ${goal}`
         }
       ],
-      model: 'deepseek-r1-distill-llama-70b'
+      model: "openai/gpt-oss-20b"
     });
 
     const content = response.choices[0]?.message?.content || '[]';
@@ -96,7 +103,7 @@ const getAiTaskSummary = async (req, res) => {
           content: taskTitles.length > 0 ? `Here are my current pending tasks:\n${taskTitles}` : 'I have no pending tasks currently.'
         }
       ],
-      model: 'deepseek-r1-distill-llama-70b'
+      model: "openai/gpt-oss-20b"
     });
 
     res.json({ summary: response.choices[0]?.message?.content });

@@ -26,7 +26,7 @@ const generateTitleSuggestion = async (req, res) => {
           content: `Description: ${description}`
         }
       ],
-      model: 'llama-3.3-70b-versatile'
+      model: 'deepseek-r1-distill-llama-70b'
     });
 
 
@@ -66,7 +66,7 @@ const generateAiTaskSuggestions = async (req, res) => {
           content: `Goal: ${goal}`
         }
       ],
-      model: 'llama-3.3-70b-versatile'
+      model: 'deepseek-r1-distill-llama-70b'
     });
 
     const content = response.choices[0]?.message?.content || '[]';
@@ -96,7 +96,7 @@ const getAiTaskSummary = async (req, res) => {
           content: taskTitles.length > 0 ? `Here are my current pending tasks:\n${taskTitles}` : 'I have no pending tasks currently.'
         }
       ],
-      model: 'llama-3.3-70b-versatile'
+      model: 'deepseek-r1-distill-llama-70b'
     });
 
     res.json({ summary: response.choices[0]?.message?.content });

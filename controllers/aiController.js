@@ -2,7 +2,7 @@ require('dotenv').config();
 const Groq = require('groq-sdk');
 const Task = require('../models/Task');
 
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+// const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 const OpenAI = require("openai");
  
